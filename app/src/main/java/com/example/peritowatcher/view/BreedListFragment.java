@@ -8,9 +8,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.peritowatcher.R;
 
@@ -22,7 +24,7 @@ import java.util.List;
  * Use the {@link BreedListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BreedListFragment extends Fragment {
+public class BreedListFragment extends Fragment implements BreedListAdapter.OnBreedClickListener {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "breedList";
@@ -68,7 +70,13 @@ public class BreedListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerViewBreedList = view.findViewById(R.id.recyclerView_BreedList);
-        recyclerViewBreedList.setAdapter(new BreedListAdapter(breedList));
+        recyclerViewBreedList.setAdapter(new BreedListAdapter(breedList, this));
         recyclerViewBreedList.setLayoutManager(new LinearLayoutManager(this.getContext()));
+    }
+
+    @Override
+    public void onBreedClick(String breed) {
+        Toast.makeText(getActivity(), breed, Toast.LENGTH_SHORT).show();
+        Log.d("FRAGMENT", "entró a onBreedClick");
     }
 }
