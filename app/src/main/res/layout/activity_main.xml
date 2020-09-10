@@ -6,13 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView_Dogs"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/dogs"
+            android:contentDescription="@string/imageView_Dogs_ContentDescription"
+            app:layout_constraintBottom_toTopOf="@id/button_ShowBreedList"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <Button
+            android:id="@+id/button_ShowBreedList"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="@string/button_ShowBreedList_Text"
+            app:layout_constraintTop_toBottomOf="@id/imageView_Dogs"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

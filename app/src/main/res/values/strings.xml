@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Perito Watcher by EvilCorp</string>
+    <string name="button_ShowBreedList_Text">Ver Peritos</string>
+    <string name="imageView_Dogs_ContentDescription">Peritos :)</string>
 </resources>

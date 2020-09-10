@@ -1,20 +1,18 @@
 package com.example.peritowatcher.presenter;
 
-import android.util.Log;
-
 import com.example.peritowatcher.contract.BreedListContract;
 import com.example.peritowatcher.model.BreedListModel;
 
 import java.util.List;
 
-public class BreedListPresenter implements BreedListContract.Presenter, BreedListContract.Model.OnFinishedListener{
+public class MainActivityPresenter implements BreedListContract.Presenter, BreedListContract.Model.OnFinishedListener{
 
-    private String tag = "BreedListPresenter";
+    private String tag = "MainActivityPresenter";
 
     private BreedListContract.View view;
     private BreedListContract.Model model;
 
-    public BreedListPresenter(BreedListContract.View view) {
+    public MainActivityPresenter(BreedListContract.View view) {
         this.view = view;
         this.model = new BreedListModel();
     }
