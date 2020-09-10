@@ -29,7 +29,6 @@ public class BreedListAdapter extends RecyclerView.Adapter<BreedListAdapter.View
 
         @Override
         public void onClick(View view) {
-            Log.d("ADAPTER", "entró al adapter");
             onBreedClickListener.onBreedClick(breedList.get(getAdapterPosition()));
         }
     }

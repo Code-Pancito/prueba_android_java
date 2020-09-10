@@ -20,6 +20,7 @@ import com.example.peritowatcher.presenter.BreedListFragmentPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +29,7 @@ import java.util.List;
  */
 public class BreedListFragment extends Fragment implements BreedListAdapter.OnBreedClickListener, BreedImageListContract.View {
 
+    private String tag = "BreedListFragment";
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "breedList";
 
@@ -85,6 +87,11 @@ public class BreedListFragment extends Fragment implements BreedListAdapter.OnBr
 
     @Override
     public void showBreedImageList(List<String> breedImageList) {
-        Toast.makeText(getActivity(), "size: " + breedImageList.size() + " image: " + breedImageList.get(0), Toast.LENGTH_SHORT).show();
+        Log.d(tag, Integer.toString(breedImageList.size()));
+        Objects.requireNonNull(getActivity()).getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.frameLayout_BreedList, BreedImageListFragment.newInstance(breedImageList), "BreedImageList")
+                .addToBackStack(null)
+                .commit();
     }
 }
