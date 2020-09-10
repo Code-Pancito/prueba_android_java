@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +32,7 @@ public class BreedImageListFragment extends Fragment {
     private static final String ARG_BREEDIMAGELIST = "breedImageList";
 
     private List<String> breedImageList;
-    private TextView textView;
+    private RecyclerView recyclerViewBreedImageList;
 
     public BreedImageListFragment() {
         // Required empty public constructor
@@ -65,12 +67,12 @@ public class BreedImageListFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_breed_image_list, container, false);
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        textView = view.findViewById(R.id.textView);
-        textView.setText("size: " + breedImageList.size() + " image: " + breedImageList.get(0));
+        recyclerViewBreedImageList = view.findViewById(R.id.recyclerView_BreedImageList);
+        recyclerViewBreedImageList.setAdapter(new BreedImageListAdapter(breedImageList));
+        recyclerViewBreedImageList.setLayoutManager(new LinearLayoutManager(this.getContext()));
     }
 }
