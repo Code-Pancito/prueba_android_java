@@ -36,12 +36,21 @@ public class MainActivity extends AppCompatActivity implements BreedListContract
 
     @Override
     public void showBreedList(List<String> breedList) {
-        Toast.makeText(this, "BreedList - size: " + breedList.size() + " breed: " + breedList.get(0), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "BreedList - size: " + breedList.size() + " breed: " + breedList.get(0), Toast.LENGTH_SHORT).show();
+        callBreedListFragment(breedList);
     }
 
     @Override
     public void showFailure(Throwable t) {
         Toast.makeText(this, Objects.requireNonNull(t.getMessage()), Toast.LENGTH_SHORT).show();
+    }
+
+    private void callBreedListFragment(List<String> breedList) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.frameLayout_BreedList, BreedListFragment.newInstance(breedList), "TAG")
+                .addToBackStack(null)
+                .commit();
     }
 
 }
