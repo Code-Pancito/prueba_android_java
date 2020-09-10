@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.peritowatcher.R;
+import com.example.peritowatcher.contract.BreedImageListContract;
+import com.example.peritowatcher.presenter.BreedListFragmentPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +26,14 @@ import java.util.List;
  * Use the {@link BreedListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BreedListFragment extends Fragment implements BreedListAdapter.OnBreedClickListener {
+public class BreedListFragment extends Fragment implements BreedListAdapter.OnBreedClickListener, BreedImageListContract.View {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "breedList";
 
     private RecyclerView recyclerViewBreedList;
     private List<String> breedList;
+    private BreedListFragmentPresenter presenter;
 
     public BreedListFragment() {
         // Required empty public constructor
@@ -56,6 +59,7 @@ public class BreedListFragment extends Fragment implements BreedListAdapter.OnBr
         if (getArguments() != null) {
             breedList = getArguments().getStringArrayList(ARG_PARAM1);
         }
+        presenter = new BreedListFragmentPresenter(this);
     }
 
     @Override
@@ -76,7 +80,11 @@ public class BreedListFragment extends Fragment implements BreedListAdapter.OnBr
 
     @Override
     public void onBreedClick(String breed) {
-        Toast.makeText(getActivity(), breed, Toast.LENGTH_SHORT).show();
-        Log.d("FRAGMENT", "entró a onBreedClick");
+        presenter.requestBreedImageList(breed);
+    }
+
+    @Override
+    public void showBreedImageList(List<String> breedImageList) {
+        Toast.makeText(getActivity(), "size: " + breedImageList.size() + " image: " + breedImageList.get(0), Toast.LENGTH_SHORT).show();
     }
 }
